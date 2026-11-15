@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>Previsão do tempo</title>
+</head>
+
+<body>
+    <h1>Previsão do tempo</h1>
+
+    <form method="get" action="/">
+        <input type="text" name="endereco" value="{{ endereco }}" placeholder="Ex.: 350 5th Ave, New York, NY 10118"
+            size="50" required>
+        <button type="submit">Buscar</button>
+    </form>
+    <p>Dica: informe rua, número, cidade e estado (ou só o zip code, como 90210).</p>
+
+    {% if erro %}
+    <p>{{ erro }}</p>
+    {% endif %}
+
+    {% if resultado %}
+    <h2>{{ resultado.local.nome }}</h2>
+    <p>Zip code: {{ resultado.local.cep }}</p>
+    <p>Temperatura agora: {{ resultado.clima.temperatura_atual }} °F</p>
+
+    {% if resultado.do_cache %}
+    <p><strong>Resultado veio do CACHE</strong></p>
+    {% else %}
+    <p>Resultado consultado agora na API</p>
+    {% endif %}
+
+    <h3>Próximos dias</h3>
+    <ul>
+        {% for dia in resultado.clima.dias %}
+        <li>{{ dia.data }} - máx: {{ dia.maxima }} °F - mín: {{ dia.minima }} °F</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+
+</html>

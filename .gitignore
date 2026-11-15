@@ -1,0 +1,12 @@
+﻿# Ambiente virtual (bibliotecas instaladas, nao vai para o GitHub)
+.venv/
+
+# Arquivos temporarios do Python
+__pycache__/
+*.pyc
+
+# Segredos: chaves de API e senhas NUNCA devem ir para um repositorio publico
+.env
+
+# Arquivos do editor
+.vscode/

@@ -53,3 +53,9 @@ Exemplos de entrada:
 - O cache fica na memória: ao reiniciar o servidor, ele é perdido.
 - Endereços incompletos podem ser interpretados como outro lugar. Por isso a página mostra o endereço que foi encontrado.
 - A busca de endereços usa um serviço gratuito, sujeito a limites de uso.
+
+## Como conferir o cache
+
+1. Busque `90210` e veja a mensagem **Resultado consultado agora na API**.
+2. Busque `90210` de novo, em até 30 minutos.
+3. A mensagem deve mudar para **Resultado veio do CACHE**.

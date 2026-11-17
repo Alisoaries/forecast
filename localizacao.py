@@ -11,11 +11,16 @@ def buscar_coordenadas(endereco):
 
     cabecalhos = {"User-Agent": "estudo-previsao-clima"}
 
-    resposta = httpx.get(
-        "https://nominatim.openstreetmap.org/search",
-        params=pedido,
-        headers=cabecalhos,
-    )
+    try:
+        resposta = httpx.get(
+            "https://nominatim.openstreetmap.org/search",
+            params=pedido,
+            headers=cabecalhos,
+            timeout=10,
+        )
+        resposta.raise_for_status()
+    except httpx.HTTPError:
+        return None
 
     resultados = resposta.json()
 

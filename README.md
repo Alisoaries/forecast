@@ -48,6 +48,14 @@ Exemplos de entrada:
 - `350 5th Ave, New York, NY 10118`
 - `90210`
 
+## Decisões: cache
+
+- **O que é guardado:** a previsão do tempo, em um dicionário na memória, com o momento em que foi guardada.
+- **Chave:** o zip code. Se o endereço não tiver, usa `latitude,longitude`.
+- **Validade:** 30 minutos. A idade é calculada na hora da busca (`agora - momento guardado`), sem relógio rodando em segundo plano.
+- **O que NÃO é cacheado:** a busca de coordenadas no Nominatim. Ela roda toda vez, porque o zip code é necessário para montar a chave.
+- **Separação:** `cache.py` só guarda e entrega. Quem decide buscar na API quando vem vazio é o `consulta.py`.
+
 ## Limitações conhecidas
 
 - O cache fica na memória: ao reiniciar o servidor, ele é perdido.
